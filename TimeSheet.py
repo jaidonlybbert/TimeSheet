@@ -6,16 +6,24 @@
 #
 # Features: Provides a way to keep track of how long is spent on various tasks,
 #   and delivers report by request
-#
-# To add:
-#   Reading log file and writing statistics file
-#   Outputting contents of statistics file
 
 
 import datetime
 from sys import argv
 
 sessionTask = ''
+
+
+def secondsToHMS(intervalInSeconds):
+    interval = [0, 0, intervalInSeconds]
+    interval[0] = interval[2] / 3600
+    interval[1] = (interval[2] % 3600) / 60
+    interval[2] = interval[2] % 60
+
+    intervalString = '{0:02.0f}:{1:02.0f}:{2:02.0f}'.format(interval[0],
+      interval[1], interval[2])
+
+    return intervalString
 
 
 def calculateIntervals():
@@ -63,20 +71,24 @@ def calculateIntervals():
             taskIntervals[task] = intervals[l]
         l += 1
 
+    for taskInterval in taskIntervals:
+        taskIntervals[taskInterval] = secondsToHMS(taskIntervals[taskInterval])
+
     return taskIntervals
 
 
 def generateStatistics():
     taskIntervals = calculateIntervals()
 
-    print "Task:\tTime spent:"
+    print '{0:30} {1:>15}'.format("Task:", "Time spent:")
     for key, value in taskIntervals.items():
-        print  key, "\t", value
+        print '{0:30} {1:>14}s'.format(key, value)
 
 
 # Display help text
 def loadHelp():
-    print("Help text.\n")
+    with open('help.txt', 'r') as fhand:
+        print fhand.read()
 
 
 # Prints data and statistics of recorded sessions
@@ -91,7 +103,7 @@ def loadSession():
     try:
         sessionTask = argv[1]
     except:
-        print("No task specified. Try 'help' for more information.\n")
+        print("Missing required argument. Try 'help' for more information.\n")
         exit()
 
     if (sessionTask == "help"):
