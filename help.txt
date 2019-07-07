@@ -1,0 +1,13 @@
+Command:                    Description:
+_________________________________________________________________________________
+
+help                        Displays this help message
+
+stats                       Prints a report of user activity
+
+[TASK]                      String specifying the task the user would like to
+                                sign in as doing. This is the string that will be
+                                used to organize the users time sessions.
+
+status                      Displays whether or not the user is currently signed
+                                in.

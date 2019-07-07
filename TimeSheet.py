@@ -6,6 +6,7 @@
 #
 # Features: Provides a way to keep track of how long is spent on various tasks,
 #   and delivers report by request
+# To add: On clockout, display session length
 
 
 import datetime
@@ -14,10 +15,28 @@ from sys import argv
 sessionTask = ''
 
 
+def displayStatus():
+    if isClockedIn() == False:
+        try:
+            with open("timeLog.txt", 'r') as fhand:
+                for line in fhand.readlines():
+                    if line[0] == "$" and line[1] == "O":
+                        time = line[6:-1]
+            print "Clocked out at %s." % time
+        except:
+            print "New user."
+    else:
+        with open("timeLog.txt", 'r') as fhand:
+            for line in fhand.readlines():
+                if line[0] == "$" and line[1] == "I":
+                    time = line[5:-1]
+        print "Clocked In at %s." % time
+
+
 def secondsToHMS(intervalInSeconds):
     interval = [0, 0, intervalInSeconds]
-    interval[0] = interval[2] / 3600
-    interval[1] = (interval[2] % 3600) / 60
+    interval[0] = (interval[2] / 3600) - ((interval[2] % 3600) / 3600)
+    interval[1] = ((interval[2] % 3600) / 60) - ((interval[2] % 3600) % 60) / 60
     interval[2] = interval[2] % 60
 
     intervalString = '{0:02.0f}:{1:02.0f}:{2:02.0f}'.format(interval[0],
@@ -101,7 +120,7 @@ def loadSession():
     global sessionTask
 
     try:
-        sessionTask = argv[1]
+        sessionTask = argv[1].lower()
     except:
         print("Missing required argument. Try 'help' for more information.\n")
         exit()
@@ -110,6 +129,8 @@ def loadSession():
         loadHelp()
     elif (sessionTask == "stats"):
         printStats()
+    elif (sessionTask == "status"):
+        displayStatus()
     else:
         autoClock(sessionTask)
 
@@ -147,7 +168,7 @@ def clockIn(sessionTask):
     with open("status.txt", "w") as fhand:
         fhand.write("1")
 
-    print("Clocked in: %s\n" % time)
+    print("Clocked in: %s" % time)
 
 
 # Clocks user out
@@ -163,7 +184,7 @@ def clockOut():
     with open("status.txt", "w") as fhand:
         fhand.write("0")
 
-    print("Clocked out: %s\n" % time)
+    print("Clocked out: %s" % time)
 
 
 # Determines whether to clock user in or out, and does so
