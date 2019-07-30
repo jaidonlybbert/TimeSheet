@@ -13,12 +13,14 @@ import datetime
 from sys import argv
 
 sessionTask = ''
-
+timeLogPath = '/home/jaidon/Documents/Python/TimeSheet/timeLog.txt'
+statusPath = '/home/jaidon/Documents/Python/TimeSheet/status.txt'
+helpPath = '/home/jaidon/Documents/Python/TimeSheet/status.txt'
 
 def displayStatus():
     if isClockedIn() == False:
         try:
-            with open("timeLog.txt", 'r') as fhand:
+            with open(timeLogPath, 'r') as fhand:
                 for line in fhand.readlines():
                     if line[0] == "$" and line[1] == "O":
                         time = line[6:-1]
@@ -26,7 +28,7 @@ def displayStatus():
         except:
             print "New user."
     else:
-        with open("timeLog.txt", 'r') as fhand:
+        with open(timeLogPath, 'r') as fhand:
             for line in fhand.readlines():
                 if line[0] == "$" and line[1] == "I":
                     time = line[5:-1]
@@ -55,7 +57,7 @@ def calculateIntervals():
     taskIntervals = {}
 
     # Load data from log into lists
-    with open('timeLog.txt', 'r') as fhand:
+    with open(timeLogPath, 'r') as fhand:
         lines = fhand.readlines()
 
         i = 0
@@ -106,7 +108,7 @@ def generateStatistics():
 
 # Display help text
 def loadHelp():
-    with open('help.txt', 'r') as fhand:
+    with open(helpPath, 'r') as fhand:
         print fhand.read()
 
 
@@ -138,11 +140,11 @@ def loadSession():
 # Check if the user last clocked in, or out
 def isClockedIn():
     try:
-        with open("status.txt", 'r') as fhand:
+        with open(statusPath, 'r') as fhand:
             status = fhand.readline()
     except:
         print("No status.txt found: creating one now.\n")
-        with open("status.txt", 'w+') as fhand:
+        with open(statusPath, 'w+') as fhand:
             fhand.write("0")
         return False
 
@@ -163,9 +165,9 @@ def clockIn(sessionTask):
 
     time = datetime.datetime.now()
 
-    with open("timeLog.txt", "a+") as fhand:
+    with open(timeLogPath, "a+") as fhand:
         fhand.write("%s\n$IN: %s\n" % (sessionTask, time))
-    with open("status.txt", "w") as fhand:
+    with open(statusPath, "w") as fhand:
         fhand.write("1")
 
     print("Clocked in: %s" % time)
@@ -179,9 +181,9 @@ def clockOut():
 
     time = datetime.datetime.now()
 
-    with open("timeLog.txt", "a+") as fhand:
+    with open(timeLogPath, "a+") as fhand:
         fhand.write("$OUT: %s\n\n" % time)
-    with open("status.txt", "w") as fhand:
+    with open(statusPath, "w") as fhand:
         fhand.write("0")
 
     print("Clocked out: %s" % time)
@@ -198,7 +200,7 @@ def autoClock(sessionTask):
 # Clears all recorded data
 def clearLog():
     try:
-        with open("timeLog.txt", "w+") as fhand:
+        with open(timeLogPath, "w+") as fhand:
             fhand.write('')
     except:
         pass
