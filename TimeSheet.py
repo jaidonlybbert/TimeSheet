@@ -15,7 +15,7 @@ from sys import argv
 sessionTask = ''
 timeLogPath = '/home/jaidon/Documents/Python/TimeSheet/timeLog.txt'
 statusPath = '/home/jaidon/Documents/Python/TimeSheet/status.txt'
-helpPath = '/home/jaidon/Documents/Python/TimeSheet/status.txt'
+helpPath = '/home/jaidon/Documents/Python/TimeSheet/help.txt'
 
 def displayStatus():
     if isClockedIn() == False:
