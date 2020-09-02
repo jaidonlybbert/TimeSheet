@@ -36,6 +36,12 @@ def displayStatus():
 
 
 def secondsToHMS(intervalInSeconds):
+    """converts time in seconds to a string representing time in hours, minutes, and seconds
+    
+        :param intervalInSeconds: a time measured in seconds
+        
+        :returns intervalString: time in HH:MM:SS format
+    """
     interval = [0, 0, intervalInSeconds]
     interval[0] = (interval[2] / 3600) - ((interval[2] % 3600) / 3600)
     interval[1] = ((interval[2] % 3600) / 60) - ((interval[2] % 3600) % 60) / 60

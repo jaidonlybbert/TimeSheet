@@ -11,8 +11,9 @@ Welcome to TimeSheet's documentation!
    :caption: Contents:
    
    Intro <intro>
-   Stepper <stepper>
-   I2C <i2c>
+   Mechanical System <mechanical>
+   Stepper Motor Control <stepper>
+   I2C Communication <i2c>
    Color Sensor <color_sensor>
    Color Processing <color_processing>
 

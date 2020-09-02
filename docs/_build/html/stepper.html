@@ -17,7 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="I2C Communication" href="i2c.html" />
-    <link rel="prev" title="About the Sorting Machine" href="intro.html" />
+    <link rel="prev" title="The Mechanical System" href="mechanical.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,6 +37,31 @@
   <div class="section" id="stepper-motor-control">
 <h1>Stepper Motor Control<a class="headerlink" href="#stepper-motor-control" title="Permalink to this headline">¶</a></h1>
 <p>The stepper motor control module is used to drive the two NEMA-17 motors used for the sorter. These are the motors for the turn table and the chute.</p>
+<span class="target" id="module-TimeSheet"></span><dl class="function">
+<dt id="TimeSheet.secondsToHMS">
+<code class="descclassname">TimeSheet.</code><code class="descname">secondsToHMS</code><span class="sig-paren">(</span><em>intervalInSeconds</em><span class="sig-paren">)</span><a class="headerlink" href="#TimeSheet.secondsToHMS" title="Permalink to this definition">¶</a></dt>
+<dd><p>converts time in seconds to a string representing time in hours, minutes, and seconds</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>intervalInSeconds</strong> – a time measured in seconds</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Returns intervalString:</th></tr>
+<tr class="field-even field"><td>&#160;</td><td class="field-body">time in HH:MM:SS format</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is a random example function from a python project of mine</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This needs to be replaced with the actual stepper code</p>
+</div>
 </div>
 
 
@@ -59,8 +84,9 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Stepper</a></li>
-<li class="toctree-l1"><a class="reference internal" href="i2c.html">I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechanical.html">Mechanical System</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Stepper Motor Control</a></li>
+<li class="toctree-l1"><a class="reference internal" href="i2c.html">I2C Communication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="color_sensor.html">Color Sensor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="color_processing.html">Color Processing</a></li>
 </ul>
@@ -69,7 +95,7 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="intro.html" title="previous chapter">About the Sorting Machine</a></li>
+      <li>Previous: <a href="mechanical.html" title="previous chapter">The Mechanical System</a></li>
       <li>Next: <a href="i2c.html" title="next chapter">I2C Communication</a></li>
   </ul></li>
 </ul>
