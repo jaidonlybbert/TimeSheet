@@ -40,7 +40,7 @@ def secondsToHMS(intervalInSeconds):
     
         :param intervalInSeconds: a time measured in seconds
         
-        :returns intervalString: time in HH:MM:SS format
+        :returns: time in HH:MM:SS format
     """
     interval = [0, 0, intervalInSeconds]
     interval[0] = (interval[2] / 3600) - ((interval[2] % 3600) / 3600)
